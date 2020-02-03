@@ -1,6 +1,13 @@
+﻿scriptencoding utf-8
+set encoding=utf-8
+set fileencodings=utf-8
+
 "  hbe-t / noisegen@gmail.com dotvimfile.
 "
-source $HOME/.vimrc
+" Kaoriya 版の場合は、.vimrc を実行
+if isdirectory('$VIM/plugins/kaoriya/')
+   source $HOME/.vimrc
+endif
 
 "  :scriptnames ロードされたスクリプト一覧
 
@@ -179,7 +186,7 @@ set laststatus=2
 " https://nanasi.jp/articles/vim/copypath_vim.html
 "source C:\Program Files\vim\plugins\copypath.vim
 
-let g:\copypath_copy_to_unnamed_register = 1
+let g:copypath_copy_to_unnamed_register = 1
 nnoremap <silent> <C-c>p :CopyPath<return>
 nnoremap <silent> <C-c>f :CopyFileName<return>
 "
@@ -203,6 +210,7 @@ nnoremap <Leader>ub :Unite buffer<return>
 " ,Ut: タブ一覧
 nnoremap <Leader>ut :Unite tab<return>
 
+" ############################################################
 " open-browser.vim  ブラウザを開く
 let g:netrw_nogx = 1
 nmap <Leader>gx <Plug>(openbrowser-smart-search)
@@ -219,23 +227,24 @@ if has('win32') || has('win64')
  \ ]
 endif
 
+" ############################################################
 "markdown を開く
 "https://qiita.com/uedatakeshi/items/31761b87ba8ecbaf2c1e
+" ############################################################
 au BufRead,BufNewFile *.md set filetype=markdown
 let g:previm_open_cmd = 'open -a chrome'
 
-
+" ############################################################
 " dbext
 "    MySQL
 " let g:dbext_default_profile_mysqlnodb = 'type=MYSQL:host=127.0.0.1:user=root:passwd=password:dbname=test'
 "    ORACLE
 " let g:dbext_default_profile_myORA = 'type=ORA:srvname=127.0.0.1:user=scott:passwd=tiger'"    
-
+" ############################################################
 "    Postgres
 let g:dbext_default_profile_pgPermaiTRUE = 'type=PGSQL:host=202.254.188.51:user=permaite:dbname=permaite:passwd=permaite:port=5432'
 let g:dbext_default_profile_pgPermaiTEST = 'type=PGSQL:host=10.168.32.50:user=permaite:dbname=permaite:passwd=permaite:port=5432'
-let g:dbext_default_profile = 'pgPermaiTRUE'
-"let g:dbext_default_PGSQLcmd_options = '\encoding UTF8'
+let g:dbext_default_profile = 'pgPermaiTEST'
 
 
 " 引数なしでvimを開くとNERDTreeを起動
@@ -248,7 +257,7 @@ let file_name = expand('%')
 "----------------------------------------------------------
 " neocomplete・neosnippetの設定
 "----------------------------------------------------------
-if dein#is_installed('neocomplete.vim')
+"if dein#is_installed('neocomplete.vim')
     " Vim起動時にneocompleteを有効にする
     let g:neocomplete#enable_at_startup = 1
     " smartcase有効化. 大文字が入力されるまで
@@ -269,5 +278,5 @@ if dein#is_installed('neocomplete.vim')
     " タブキーで補完候補の選択. スニペット内のジャンプも
     " タブキーでジャンプ・・・・・・③
     imap <expr><TAB> pumvisible() ? "<C-n>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<TAB>"
-endif
+"endif
 

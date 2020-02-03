@@ -4,7 +4,7 @@ scriptencoding utf-8
 " An example for a Japanese version gvimrc file.
 " 日本語版のデフォルトGUI設定ファイル(gvimrc) - Vim 8.1
 "
-" Last Change: 09-Jan-2020.
+" Last Change: 22-Jan-2020.
 " Maintainer:  MURAOKA Taro <koron.kaoriya@gmail.com>
 "
 " 解説:
@@ -92,13 +92,15 @@ endif
 " ウインドウに関する設定:
 "
 " ウインドウの幅
-set columns=80
+set columns=180
 " ウインドウの高さ
 set lines=54
 " コマンドラインの高さ(GUI使用時)
 set cmdheight=2
 " 画面を黒地に白にする (次行の先頭の " を削除すれば有効になる)
 colorscheme evening " (GUI使用時)
+
+vsp
 
 "---------------------------------------------------------------------------
 " 日本語入力に関する設定:
