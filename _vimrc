@@ -90,6 +90,33 @@ set directory=~/temp
 set undodir=~/temp
 set cursorline
 set cursorcolumn
+set number
+set visualbell
+
+set listchars=tab:>-,trail:-,eol:$,extends:>,precedes:<,nbsp:%
+set list
+
+if has("syntax")
+    syntax on
+ 
+    " PODバグ対策
+    syn sync fromstart
+ 
+    function! ActivateInvisibleIndicator()
+        " 下の行の"　"は全角スペース
+        syntax match InvisibleJISX0208Space "　" display containedin=ALL
+        highlight InvisibleJISX0208Space term=underline ctermbg=Blue guibg=darkgray gui=underline
+        "syntax match InvisibleTrailedSpace "[ \t]\+$" display containedin=ALL
+        "highlight InvisibleTrailedSpace term=underline ctermbg=Red guibg=NONE gui=undercurl guisp=darkorange
+        "syntax match InvisibleTab "\t" display containedin=ALL
+        "highlight InvisibleTab term=underline ctermbg=white gui=undercurl guisp=darkslategray
+    endfunction
+ 
+    augroup invisible
+        autocmd! invisible
+        autocmd BufNew,BufRead * call ActivateInvisibleIndicator()
+    augroup END
+endif
 
 " https://qiita.com/enomotok/items/9d38b716fe883675d35b
 set iminsert=0
@@ -242,8 +269,11 @@ let g:previm_open_cmd = 'open -a chrome'
 " let g:dbext_default_profile_myORA = 'type=ORA:srvname=127.0.0.1:user=scott:passwd=tiger'"    
 " ############################################################
 "    Postgres
-let g:dbext_default_profile_pgPermaiTRUE = 'type=PGSQL:host=202.254.188.51:user=permaite:dbname=permaite:passwd=permaite:port=5432'
+let g:dbext_default_profile_pgPermaiTRUE = 'type=PGSQL:host=10.187.160.26:user=permaite:dbname=permaite:passwd=permaite:port=5432'
 let g:dbext_default_profile_pgPermaiTEST = 'type=PGSQL:host=10.168.32.50:user=permaite:dbname=permaite:passwd=permaite:port=5432'
+let g:dbext_default_profile_pgPermaiLO3 = 'type=PGSQL:host=localhost:user=permaite:dbname=TEST_EQP_CHK:passwd=permaite:port=5432'
+let g:dbext_default_profile_pgPermaiLODB2 = 'type=PGSQL:host=localhost:user=postgres:dbname=TEST_DB2:passwd=permaite:port=5432'
+let g:dbext_default_profile_pgPermaiLO = 'type=PGSQL:host=10.168.31.111:user=permaite:dbname=TEST_DB2:passwd=permaite:port=5432'
 let g:dbext_default_profile = 'pgPermaiTEST'
 
 
