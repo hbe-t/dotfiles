@@ -132,16 +132,23 @@ endif
 " deinの設定とプラグインのインストール
 " ############################################################
 
-set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
+"let g:vimproc#download_windows_dll = 1
 
-let s:dein_dir = expand('~/.cache/dein')
+set runtimepath+=~/.vim/.cache/dein/repos/github.com/Shougo/dein.vim
+
+let s:dein_dir = expand('~/.vim/.cache/dein')
 
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com'
 if !isdirectory(s:dein_repo_dir)
   call system('git clone https://github.com/Shougo/dein.vim ' . shellescape(s:dein_repo_dir))
 endif
 
-let s:toml_file = "C:/Program Files/vim/.vim/.dein/.dein.toml"
+if isdirectory('$VIM/plugins/kaoriya/')
+  let s:toml_file = "C:/Program Files/vim/.vim/.dein/.dein.toml"
+else
+  let s:toml_file = "~/.vim/.dein/.dein.toml"
+endif
+
 if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir, [$MYVIMRC, s:toml_file])
 "  call dein#load_toml(s:toml_file)
