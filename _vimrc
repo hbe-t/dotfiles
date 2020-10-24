@@ -165,6 +165,9 @@ if dein#load_state(s:dein_dir)
 "  call dein#add( 'plasticboy/vim-markdown' )
   call dein#add( 'kannokanno/previm' )
 
+  call dein#add('scrooloose/nerdtree')
+  call dein#add('tpope/vim-fugitive')
+
   call dein#end()
   call dein#save_state()
 endif
@@ -211,7 +214,7 @@ set laststatus=2
 " CopyPath
 " ############################################################
 " https://nanasi.jp/articles/vim/copypath_vim.html
-"source C:\Program Files\vim\plugins\copypath.vim
+source C:\Program Files\vim\plugins\copypath.vim
 
 let g:copypath_copy_to_unnamed_register = 1
 nnoremap <silent> <C-c>p :CopyPath<return>
@@ -242,6 +245,8 @@ nnoremap <Leader>ut :Unite tab<return>
 let g:netrw_nogx = 1
 nmap <Leader>gx <Plug>(openbrowser-smart-search)
 vmap <Leader>gx <Plug>(openbrowser-smart-search)
+nnoremap <Leader>go :<C-u>execute "OpenBrowser" "file://" . expand('%:p:gs?\\?/?')<CR>
+
 "
 " chrome
 " http://hanagurotanuki.blogspot.com/2015/03/windowsopen-browservimchrome.html
@@ -271,17 +276,20 @@ let g:previm_open_cmd = 'open -a chrome'
 "    Postgres
 let g:dbext_default_profile_pgPermaiTRUE = 'type=PGSQL:host=10.187.160.26:user=permaite:dbname=permaite:passwd=permaite:port=5432'
 let g:dbext_default_profile_pgPermaiTEST = 'type=PGSQL:host=10.168.32.50:user=permaite:dbname=permaite:passwd=permaite:port=5432'
-let g:dbext_default_profile_pgPermaiLO3 = 'type=PGSQL:host=localhost:user=permaite:dbname=TEST_EQP_CHK:passwd=permaite:port=5432'
+let g:dbext_default_profile_pgPermaiLOEQP = 'type=PGSQL:host=localhost:user=permaite:dbname=TEST_EQP_CHK:passwd=permaite:port=5432'
+let g:dbext_default_profile_pgPermaiLODB4 = 'type=PGSQL:host=localhost:user=postgres:dbname=TEST_DB4:passwd=permaite:port=5432'
+let g:dbext_default_profile_pgPermaiLODB5 = 'type=PGSQL:host=localhost:user=postgres:dbname=TEST_DB5:passwd=permaite:port=5432'
 let g:dbext_default_profile_pgPermaiLODB2 = 'type=PGSQL:host=localhost:user=postgres:dbname=TEST_DB2:passwd=permaite:port=5432'
 let g:dbext_default_profile_pgPermaiLO = 'type=PGSQL:host=10.168.31.111:user=permaite:dbname=TEST_DB2:passwd=permaite:port=5432'
-let g:dbext_default_profile = 'pgPermaiTEST'
+let g:dbext_default_profile = 'pgPermaiLODB2'
 
 
 " 引数なしでvimを開くとNERDTreeを起動
-let file_name = expand('%')
+"let file_name = expand('%')
 "if has('vim_starting') &&  file_name == ''
+" autocmd VimEnter * tabnew
 " autocmd VimEnter * NERDTree ./
-"ndif
+"endif
 
 
 "----------------------------------------------------------
