@@ -1,6 +1,6 @@
 ﻿scriptencoding utf-8
 set encoding=utf-8
-set fileencodings=utf-8
+"(12/12) |vimproc.vim         | Build failedset fileencodings=utf-8
 
 "  hbe-t / noisegen@gmail.com dotvimfile.
 "
@@ -134,7 +134,9 @@ endif
 
 "let g:vimproc#download_windows_dll = 1
 
-set runtimepath+=~/.vim/.cache/dein/repos/github.com/Shougo/dein.vim
+"#set runtimepath+=~/.vim/.cache/dein/repos/github.com/Shougo/dein.vim
+"#set runtimepath+=C:\Program Files\vim\.vim\.dein\.cache/dein/repos/github.com/Shougo/dein.vim
+set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
 let s:dein_dir = expand('~/.vim/.cache/dein')
 
