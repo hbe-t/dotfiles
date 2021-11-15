@@ -136,9 +136,9 @@ endif
 
 "#set runtimepath+=~/.vim/.cache/dein/repos/github.com/Shougo/dein.vim
 "#set runtimepath+=C:\Program Files\vim\.vim\.dein\.cache/dein/repos/github.com/Shougo/dein.vim
-set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
-
-let s:dein_dir = expand('~/.vim/.cache/dein')
+let s:dein_dir = '/c/Users/a5120004/.cache/dein'
+"set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
+execute 'set runtimepath +=' . s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com'
 if !isdirectory(s:dein_repo_dir)
@@ -168,8 +168,8 @@ if dein#load_state(s:dein_dir)
 
   call dein#add('vim-scripts/dbext.vim')
 
-  "call dein#add('taku-o/downloads/raw/master/copypath.vim')
-"  call dein#add('taku-o/downloads/copypath.vim')
+  call dein#add('taku-o/downloads/raw/master/copypath.vim')
+  call dein#add('taku-o/downloads/copypath.vim')
 
 "  call dein#add( 'plasticboy/vim-markdown' )
   call dein#add( 'kannokanno/previm' )
@@ -180,6 +180,13 @@ if dein#load_state(s:dein_dir)
   call dein#end()
   call dein#save_state()
 endif
+
+" If you want to install not installed plugins on startup.
+if dein#check_install()
+  call dein#install()
+endif
+
+"End dein Scripts-------------------------
 
 "
 " 不足プラグインの自動インストール
@@ -290,7 +297,8 @@ let g:dbext_default_profile_pgPermaiLODB4 = 'type=PGSQL:host=localhost:user=post
 let g:dbext_default_profile_pgPermaiLODB5 = 'type=PGSQL:host=localhost:user=postgres:dbname=TEST_DB5:passwd=permaite:port=5432'
 let g:dbext_default_profile_pgPermaiLODB2 = 'type=PGSQL:host=localhost:user=postgres:dbname=TEST_DB2:passwd=permaite:port=5432'
 let g:dbext_default_profile_pgPermaiLO = 'type=PGSQL:host=10.168.31.111:user=permaite:dbname=TEST_DB2:passwd=permaite:port=5432'
-let g:dbext_default_profile = 'pgPermaiLODB2'
+let g:dbext_default_profile_pgTEST0 = 'type=PGSQL:host=localhost:user=postgres:dbname=TESTDB0:passwd=postgres:port=5432'
+let g:dbext_default_profile = 'pgTEST0'
 
 
 " 引数なしでvimを開くとNERDTreeを起動
@@ -304,7 +312,7 @@ let g:dbext_default_profile = 'pgPermaiLODB2'
 "----------------------------------------------------------
 " neocomplete・neosnippetの設定
 "----------------------------------------------------------
-"if dein#is_installed('neocomplete.vim')
+if dein#is_installed('neocomplete.vim')
     " Vim起動時にneocompleteを有効にする
     let g:neocomplete#enable_at_startup = 1
     " smartcase有効化. 大文字が入力されるまで
@@ -324,6 +332,6 @@ let g:dbext_default_profile = 'pgPermaiLODB2'
     imap <expr><CR> neosnippet#expandable() ? "<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "<C-y>" : "<CR>"
     " タブキーで補完候補の選択. スニペット内のジャンプも
     " タブキーでジャンプ・・・・・・③
-    imap <expr><TAB> pumvisible() ? "<C-n>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<TAB>"
-"endif
+    "imap <expr><TAB> pumvisible() ? "<C-n>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<TAB>"
+endif
 
